@@ -1,0 +1,108 @@
+@hostname = localhost
+@port = 3000
+@host = {{hostname}}:{{port}}
+@baseUrl = http://{{host}}/v1
+@contentType = application/json
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZjYxMTA4ZTRiZWJmMzIxOTA5ZTkzMTEiLCJpYXQiOjE2MDAyNTc1OTMsImV4cCI6MTYwMDI1OTM5MywidHlwZSI6ImFjY2VzcyJ9.Dy9M4d7wue_CXt12Yo7gSmowob84GTZqohFh1BIyvjA
+@refreshToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZjYxYjIxYjEyMGEyODU0ZjBjOTQxZjQiLCJpYXQiOjE2MDAyMzgxMDcsImV4cCI6MTYwMjgzMDEwNywidHlwZSI6InJlZnJlc2gifQ.MKLlhA_Ub_2E3BgCFlwhC3f3FFFAgW5OuJBFp6AzhI0
+@confirmationCode = 04XkBNPpEDonRr1qLPfqlSZ8ez5Z6Og2AO6SlShNhhDf7bIQzzP7l25HG0AT2riJCaJwOM4KMUFGuxiDoET9vu7fEKegPvgBOuaB5eBpbea7wJnMSVUbRc9d7UMf59nstAQiLPOwuxzQZJkMykvfYfCHBCijWhDtPXuBZOnmthOOEquFvEp78UF9kUj3o7fJRrJgCG6mhvCYtrr1sVoqzCR0YQREfxeO5pw6BkiNl8oOutFUQ8SIchaHv3SufCmI
+###
+POST {{baseUrl}}/auth/login HTTP/1.1
+content-type: {{contentType}}
+
+{
+  "email": "john@app.com",
+  "password": "password1"
+}
+
+###
+POST {{baseUrl}}/auth/logout HTTP/1.1
+content-type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+{
+  "refreshToken": "{{refreshToken}}"
+}
+
+###
+POST {{baseUrl}}/auth/forgot-password HTTP/1.1
+content-type: {{contentType}}
+
+{
+  "email": "aguara34@yopmail.com"
+}
+
+###
+GET {{baseUrl}}/users/5f61b21b120a2854f0c941f4 HTTP/1.1
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+###
+GET {{baseUrl}}/docs HTTP/1.1
+Content-Type: {{contentType}}
+
+###
+POST {{baseUrl}}/auth/register HTTP/1.1
+content-type: {{contentType}}
+
+{
+  "email": "aguara34@yopmail.com",
+  "password": "password1",
+  "name": "aguara34",
+  "firstName": "Aguara",
+  "lastName": "Gazu",
+  "bio": "Una bio para Aguara Gazu"
+}
+
+###
+GET {{baseUrl}}/auth/confirm?email=aguara34@yopmail.com&token=Sqtw6zEfQAF4nfUV6IXUcFSO4iHskmPaWLBZWeDEyCZpAijAKv5g3OJH2xgMydjB3seQoQbFCrodlip2jR4MTP07BkrhM5PEsWoRFp1lfNk5s4vfKrlObe9FPy9TisNugvJ8EIaGK0edEA9mjS4AXVTRL5BlVwuYpXGIeGvDz5TJyw2yLkfrGn9H0dFffPUkUQGFtOJeORkRms4hoHklO9Q6szu97vW1xiqniLjIkpUozX7Bwuar1RfMEoxHTOUA HTTP/1.1
+content-type: {{contentType}}
+
+###
+GET {{baseUrl}}/users HTTP/1.1
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+###
+GET {{baseUrl}}/tasks HTTP/1.1
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+###
+GET {{baseUrl}}/tasks?completed=false HTTP/1.1
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+###
+POST {{baseUrl}}/tasks HTTP/1.1
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+{
+  "description": "DOS TAREA USER"
+}
+
+###
+PATCH {{baseUrl}}/tasks/5f614a41aab9305708e392ee HTTP/1.1
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+{
+  "description": "Cuatro TAREA USER",
+  "completed": true
+}
+
+###
+GET {{baseUrl}}/tasks/5f612fa841e828572820c809 HTTP/1.1
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+###
+GET {{baseUrl}}/tasks/5f614a22aab9305708e392ed HTTP/1.1
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+###
+DELETE {{baseUrl}}/tasks/5f61545c28787d342cce2704 HTTP/1.1
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}

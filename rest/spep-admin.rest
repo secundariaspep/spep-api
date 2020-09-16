@@ -1,0 +1,62 @@
+@hostname = localhost
+@port = 3000
+@host = {{hostname}}:{{port}}
+@baseUrl = http://{{host}}/v1
+@contentType = application/json
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZjYxMTA4ZTRiZWJmMzIxOTA5ZTkzMTEiLCJpYXQiOjE2MDAyMTA4MjIsImV4cCI6MTYwMDIxMjYyMiwidHlwZSI6ImFjY2VzcyJ9.Gx3Bh7MicEhH5q0IcHaAuEhU1hDSPjNxxP_8-qCiii0
+###
+POST {{baseUrl}}/auth/login HTTP/1.1
+content-type: {{contentType}}
+
+{
+  "email": "admin@app.com",
+  "password": "password1"
+}
+
+###
+GET {{baseUrl}}/users/5f61108e4bebf321909e9311 HTTP/1.1
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+###
+POST {{baseUrl}}/auth/register HTTP/1.1
+content-type: {{contentType}}
+
+{
+  "email": "admin@app.com",
+  "password": "password1",
+  "name": "Admin"
+}
+
+###
+GET {{baseUrl}}/users HTTP/1.1
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+###
+GET {{baseUrl}}/tasks HTTP/1.1
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+###
+POST {{baseUrl}}/tasks HTTP/1.1
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+{
+  "description": "UNA TAREA USER"
+}
+
+###
+PATCH {{baseUrl}}/tasks/5f612fa841e828572820c809 HTTP/1.1
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
+
+{
+  "description": "otra TAREA ADMIN"
+}
+
+###
+GET {{baseUrl}}/tasks/5f612fa841e828572820c809 HTTP/1.1
+Content-Type: {{contentType}}
+Authorization: Bearer {{authToken}}
